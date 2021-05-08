@@ -1,0 +1,157 @@
+<FirstWindow>
+  namee: namee
+
+  FloatLayout:
+    Label:
+      text: "Welcome! What's your name?"
+      size_hint: 0.8, 0.1
+      pos_hint: {"x": 0.1, "top": 0.95}
+
+    Label:
+      text: "Name"
+      pos_hint: {"x": 0.1, "top": 0.8}
+      size_hint: 0.8, 0.15
+
+    TextInput:
+      id: namee
+      multiline: False
+      pos_hint: {"x": 0.2 , "top": 0.7}
+      size_hint: 0.6, 0.05
+
+    Button:
+      pos_hint:{"x": 0.2,"y": 0.05}
+      size_hint: 0.6, 0.1
+      text: "Submit"
+      on_release:
+        root.manager.transition.direction = "up"
+        root.submit_name()
+
+<MainWindow>
+  mainLabel: mainLabel
+  FloatLayout:
+    Label:
+      id: mainLabel
+      size_hint: 0.8, 0.1
+      pos_hint: {"x": 0.1, "top": 0.95}
+
+    Button:
+      text: "Reach Out!"
+      pos_hint: {"x": 0.4, "top": 0.85}
+      size_hint: 0.2, 0.07
+      on_release:
+        root.reach_out()
+
+    Button:
+      text: "Contacts"
+      pos_hint: {"x": 0.1, "y": 0.05}
+      size_hint: 0.2, 0.07
+      on_release:
+        root.manager.transition.direction = "right"
+        root.contacts_btn()
+
+<AddNewContactWindow>
+  namee: namee
+  pnumber: pnumber
+
+  FloatLayout:
+    Label:
+      text: "Add Contact Info:"
+      size_hint: 0.8, 0.1
+      pos_hint: {"x": 0.1, "top": 0.95}
+
+    Label:
+      text: "Name"
+      pos_hint: {"x": 0.1, "top": 0.9}
+      size_hint: 0.8, 0.15
+
+    TextInput:
+      id: namee
+      multiline: False
+      pos_hint: {"x": 0.2 , "top": 0.8}
+      size_hint: 0.6, 0.1
+
+    Label:
+      text:"Phone Number: (Digits Only)"
+      pos_hint: {"x": 0.1, "top": 0.65}
+      size_hint: 0.8, 0.15
+
+    TextInput:
+      id: pnumber
+      multiline: False
+      pos_hint: {"x": 0.2, "top": 0.55}
+      size_hint: 0.6, 0.1
+
+    Button:
+      pos_hint:{"x": 0.2,"y": 0.05}
+      size_hint: 0.6, 0.1
+      text: "Submit"
+      on_release:
+        root.manager.transition.direction = "up"
+        root.submit_new_contact()
+
+<ContactsWindow>
+  layout_content: layout_content
+  FloatLayout:
+    Label:
+      text: "Contacts List"
+      size_hint: 0.8, 0.1
+      pos_hint: {"x": 0.1, "top": 0.95}
+
+    Button:
+      text: "+"
+      pos_hint: {"x": 0.1, "y": 0.05}
+      size_hint: 0.07, 0.07
+      on_release:
+        root.manager.transition.direction = "down"
+        root.new_contact_btn()
+
+    Button:
+      text: ">"
+      pos_hint: {"x": 0.9, "y": 0.05}
+      size_hint: 0.07, 0.07
+      on_release:
+        root.manager.transition.direction = "left"
+        root.back_btn()
+
+    ScrollView:
+      pos_hint: {"x": 0.2, "top": 0.85}
+      size_hint: 0.6, 0.8
+
+      GridLayout:
+        id: layout_content
+        size_hint_y: None
+        cols: 1
+        spacing: 15
+        row_default_height: '20dp'
+        row_force_default: True
+        padding: 10
+
+<ContactWindow>
+  n: n
+  num: num
+  FloatLayout:
+    Label:
+      id: n
+      size_hint: 0.8, 0.2
+      pos_hint: {"x": 0.1, "top": 0.8}
+
+    Label:
+      id: num
+      size_hint: 0.8, 0.2
+      pos_hint: {"x": 0.1, "top": 0.6}
+
+    Button:
+      text: "Delete"
+      pos_hint: {"x": 0.1, "y": 0.05}
+      size_hint: 0.2, 0.07
+      on_release:
+        root.manager.transition.direction = "down"
+        root.delete_contact()
+
+    Button:
+      text: ">"
+      pos_hint: {"x": 0.9, "y": 0.05}
+      size_hint: 0.07, 0.07
+      on_release:
+        root.manager.transition.direction = "left"
+        root.back_btn()
