@@ -68,7 +68,10 @@ class MainWindow(Screen):
 
     def reach_out(self):
         db.load()
-        auth = HTTPBasicAuth('AC111abf060be70483872f096ef66673df', 'd5b3a4a4d9f391ca0d73091cb40ccf01')
+        auth_file = open("auth.txt", "r")
+        l = file_temp.readlines()
+        auth_file.close()
+        auth = HTTPBasicAuth(l[0], l[1])
         res = {}
         for contact in db.contacts:
             message = "Hello " + contact + "! Your friend Neil is feeling down and wants to talk to someone. This is a message letting you know so you can reach out :). Have fun and take care of each other!"
