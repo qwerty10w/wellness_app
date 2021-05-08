@@ -8,6 +8,10 @@ __pycache__/
 
 # Buildozer
 .buildozer/
+bin/
+
+# Atom
+__pycache__/
 
 # Auth
 auth.txt
