@@ -18,12 +18,21 @@ from database import DB
 
 file_temp = open("myName.txt", "r")
 lines_temp = file_temp.readlines()
+file_temp.close()
 NEM = ""
 
 try:
     NEM = lines_temp[0]
 except:
     pass
+
+def update_nem():
+    file_temp = open("myName.txt", "r")
+    lines_temp = file_temp.readlines()
+    file_temp.close()
+    global NEM
+    NEM = lines_temp[0]
+    MainWindow.nem = NEM
 
 
 class FirstWindow(Screen):
@@ -32,6 +41,7 @@ class FirstWindow(Screen):
     def submit_name(self):
         with open("myName.txt", "w") as f:
             f.write(self.namee.text)
+        update_nem()
         sm.current = "main"
 
     def reset(self):
@@ -46,8 +56,15 @@ class MainWindow(Screen):
         print("name of user: " + self.nem)
         self.mainLabel.text = "Wecome " + self.nem + "! Feeling Down? Ask your friends to reach out!"
 
+    def on_pre_enter(self, *args):
+        self.nem = NEM
+        self.mainLabel.text = "Wecome " + self.nem + "! Feeling Down? Ask your friends to reach out!"
+
     def contacts_btn(self):
         sm.current = "contacts"
+
+    def change_name(self):
+        sm.current = "first"
 
     def reach_out(self):
         db.load()
@@ -142,6 +159,9 @@ class ContactWindow(Screen):
 class AddNewContactWindow(Screen):
     namee = ObjectProperty(None)
     pnumber = ObjectProperty(None)
+
+    def back_btn(self):
+        sm.current = "contacts"
 
     def submit_new_contact(self):
         if(self.namee.text != "" and self.pnumber.text != ""):
