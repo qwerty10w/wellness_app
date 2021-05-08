@@ -91,7 +91,7 @@ class MainWindow(Screen):
                 else:
                     msg_2 += r + "\n"
             msg = msg_1 + msg_2
-            pop = Popup(title="We've Reached out to your friends. Sit Tight.", content=Label(text=msg), size_hint=(None,None), size=(400,400))
+            pop = Popup(title="We've Reached out to your friends. Sit Tight.", content=Label(text=msg), size_hint=(None,None), size=(800,800))
             pop.open()
 
 class ContactsWindow(Screen):
@@ -186,7 +186,7 @@ class myApp(App):
         return sm
 
 def invalid_form():
-    pop = Popup(title="Invalid Form", content=Label(text="Please fill in all fields with valid info.\n Names must be unique!"), size_hint=(None,None), size=(400,400))
+    pop = Popup(title="Invalid Form", content=Label(text="Please fill in all fields with valid info.\n Names must be unique!"), size_hint=(None,None), size=(800,800))
     pop.open()
 
 kv = Builder.load_file("my.kv")
