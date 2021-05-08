@@ -69,7 +69,7 @@ class MainWindow(Screen):
     def reach_out(self):
         db.load()
         auth_file = open("auth.txt", "r")
-        l = file_temp.readlines()
+        l = auth_file.readlines()
         auth_file.close()
         auth = HTTPBasicAuth(l[0], l[1])
         res = {}
