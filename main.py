@@ -1,3 +1,5 @@
+from kivmob import KivMob, TestIds, RewardedListenerInterface
+
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -74,7 +76,7 @@ class MainWindow(Screen):
         auth = HTTPBasicAuth(l[0], l[1])
         res = {}
         for contact in db.contacts:
-            message = "Hello " + contact + "! Your friend Neil is feeling down and wants to talk to someone. This is a message letting you know so you can reach out :). Have fun and take care of each other!"
+            message = "Hello " + contact + "! Your friend, " + self.nem + " is feeling down and wants to talk to someone. This is a message letting you know so you can reach out :). Have fun and take care of each other!"
             num = "+1" + str(db.contacts[contact])
             r = requests.post("https://api.twilio.com/2010-04-01/Accounts/AC111abf060be70483872f096ef66673df/Messages.json", data={'From': '+15128293644', 'Body': message, 'To': num}, auth=auth)
             res[contact] = r.status_code
@@ -182,7 +184,11 @@ class AddNewContactWindow(Screen):
         self.pnumber.text = ""
 
 class myApp(App):
+    ads = KivMob(TestIds.APP) # put admob id here
     def build(self):
+        self.ads.new_banner(TestIds.BANNER, False)
+        self.ads.request_banner()
+        self.ads.show_banner()
         return sm
 
 def invalid_form():
